@@ -21,6 +21,11 @@ login_approle() {
     echo -n "${token}" > ~/.vault-token
 }
 
+login_github() {
+     github_access_token="$1"
+     vault auth -method=github token=${github_access_token}
+}
+
 get_secret() {
     vault read -format=json ${1} | jq -r '.data'
 }
